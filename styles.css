@@ -1,0 +1,11 @@
+body{
+    font-size:4vmin;
+}
+
+.front{
+    display:block !important;
+}
+
+.dash_page{
+    display:none;
+}

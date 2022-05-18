@@ -2,25 +2,38 @@
 <!DOCTYPE html>
 <head>
   <title> URVU dashboard </title>
-  <link rel="stylesheet" href="./styles">
+  <link rel="stylesheet" href="./styles.css">
 </head>
+
 <body>
 <!-- this div will be hideable and revealable also toggleable options will be added here-->
     <div class = 'buttons'>
-        <input placeholder = "name your panel">
-        <input placeholder = "input the link to what you want shown">
-        <button> Add a view to URVU</button>
+        
         <input placeholder = "name your dashboard page">
-        <button> Add a new page to URVU </button>
+        <button id = 'add_page'> Add a new page to URVU </button>
     </div>
 
+<div id="main_page">
+<div id = 'page_selector'>
+    <button class = 'page_selector'>page1</button>
+</div>
+    <div class = "dash_page front" id = "page1">
+
+        <div class = 'controls'>
+        <input placeholder = "name your panel">
+        <input placeholder = "input the link to what you want shown">
+        <button id = "add_view"> Add a view to URVU</button>
+
+        </div>
 
 
-    <div class = "dash" id = "dash1">
+        <iframe src = 'https://docs.google.com/document/d/1ET70y1bxWyXbAO5cGNHeES5ZM3vSSkM5P5lxpXk1LRc/edit'></iframe>
 <div id = "charity window">
     Like URVU? support a charity to show your appreciation.
 </div>
     </div>
+
+</div>
 
     
 
@@ -28,8 +41,83 @@
 
 <!-- script added here will ruin the page, should be entirely dynamic and rely on local storage of the HTML to save views-->
 <script>
-// hide show function for controls
+var j=1;
+var pages = ['page1']
+// button event listeners
+var new_page = document.getElementById('add_page')
+var new_view = document.getElementById('add_view')
 
+
+// function to change which page is at front
+function make_front(){
+
+}
+
+// function for changing iframe link
+function changelink(link){
+var frame = document.getElementById('frame');
+frame.src = link;
+}
+
+
+
+
+
+// create a new dashboard page
+function new_page2(){
+    j++;
+    //window.alert(j)
+    var to_back = document.getElementsByClassName('dash_page')
+     
+    for(i=0;i<to_back.length;i++){
+        to_back[i].classList.remove('front')
+    }
+
+
+    document.getElementById('main_page').innerHTML+= `<div class = "dash_page front" id = "page${j}">
+        <input placeholder = "name your panel">
+        <input placeholder = "input the link to what you want shown">
+        <button id = "add_view"> Add a view to URVU</button>
+<div id = "charity window">
+    Like URVU? support a charity to show your appreciation.
+</div>
+    </div>`
+
+    pages.push(`page${j}`);
+    
+//window.alert(pages);
+
+}
+
+
+function new_view2(){
+window.alert(this.parentElement.parentElement.parentElement.innerHTML);
+}
+// function to enable fullscreen buttons
+//document.getElementById('fullscreen2').addEventListener('click',()=>{
+//var frame = document.getElementById('frame')
+//var button = document.getElementById('fullscreen2')
+//frame.classList.toggle('fullscreen')
+//button.classList.toggle('fullscreen')
+//})
+
+
+// probably not needed
+
+//function expandhidechild(doc){
+//window.alert(doc)
+//var child = doc.parentNode.childNodes;
+//window.alert(child)
+//child.classList.toggle("show");
+//window.alert(child.classList);
+//child[2].classList.toggle("hidden");
+//}
+
+
+// hide show function for controls
+function hide_show(){
+    
+}
 
 //drag and drop feature
 
@@ -44,6 +132,10 @@
 
 // generate tabs (for multiple pages)
 
+
+
+new_view.addEventListener('click',new_view2)
+new_page.addEventListener('click', new_page2)
 </script>    
 </body>
 
